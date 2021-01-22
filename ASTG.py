@@ -7,6 +7,8 @@ Another Security Token Generator
 from FNNH import FNNH
 import secrets as rn
 
+
+# edit the private key to use some other private key
 private_key = "this is a private key or it vould be a random string like -x5asChj7lyPkt4m6_"
 
 
