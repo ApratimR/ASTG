@@ -54,3 +54,35 @@ def verify_token(token):
 		
 	return verify
 	
+
+def custom_verify_token(token,c_primary_key):
+	"""
+	verify the token string provided against the custom Private key
+
+	provides output as a bool
+	"""
+	if token == None:
+		raise Exception("No Token string provided")
+	elif len(token) !=64:
+		raise Exception("invalid size of token entered")
+
+	hash1,thesr2 = token[0:32],token[32:64]
+
+	calchash = FNNH(data=c_primary_key+thesr2,hash_size=tokensize,rounds=32)
+
+	if hash1 == calchash:
+		verify = True
+	else:
+		verify = False
+		
+	return verify
+
+def custom_generate_token(c_private_key):
+	"""
+	returns a unique token based on the custom private key
+	"""
+	thesr = generaterng()
+
+	thekey = FNNH(data=c_private_key+thesr,hash_size=tokensize,rounds=32)
+	thekey = thekey + thesr
+	return thekey

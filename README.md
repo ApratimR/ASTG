@@ -22,6 +22,18 @@ print(temp)
 status = verify_token(temp)
 print(status)
 #True - when you verify a token
+
+
+customkey = "private key that can be used to make tokens for muliple tiers"
+
+temp = ASTG.custom_generate_token(customkey)
+print(temp)
+#P1eF7ysgX00P4yGcf1xM4fQTQ1m_7obSseePeVfPWd7q8LLxlJ74L6LPqO3I--uv
+# - a security token generated as per the custom private key
+
+status = ASTG.custom_verify_token(temp,customkey)
+print(status)
+#True - when you verify a token against the custom private key
 ```
 
 [FNNH]:https://github.com/ApratimR/FNN-Hash
